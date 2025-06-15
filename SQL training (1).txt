@@ -1,0 +1,101 @@
+1. Why do we Normalize the data bases?
+Normalization is used to minimize the redundancy from a relation or set of relations. It is also used to eliminate undesirable characteristics like Insertion, Update, and Deletion Anomalies. Failure to eliminate anomalies leads to data redundancy and can cause data integrity and other problems as the database grows. 
+
+2. What are different SQL Command types?
+DCL(Grant & Revoke), DQL(Select), DDL, DML, TCL(Commit, Rollback, savepoint, Rollback)
+
+3. Write synax for ALTER command.
+   Alter table students add column height decimal (5,1), add column weight decimal (5,2), add column score int unsigned; 
+Alter table students add column date_of_birth date after age;
+Alter table students rename column height to Tall;
+Alter table students drop column weight;
+To modify column type: Alter table students modify column student_id int unsigned;
+
+4. Difference between Drop, Truncate and Delete *
+Drop will remove data and structure. Truncate and Delete * are for same purpose. However, truncate is faster because it generates less transaction logs. Each row deletion is a seperate transaction. So each row deletion can be rolled back independently.
+
+5. List most common datatypes in SQL
+NUMERIC
+DATE
+DATETIME
+TIMESTAMP
+STRING
+
+6.Difference between Oracle SQL and MySQL
+Oracle SQL: Is licensed and supports PL/SQL, a procedural language extension to SQL.
+MySQL: Is Open source and supports stored procedures and triggers using its own procedural language.(Acquired by Oracle)
+
+7.Difference between char and varchar
+CHAR: Fixed-length character data type. It allocates a specific, fixed amount of storage space for each value, padding with spaces if necessary to fill the entire length.
+VARCHAR (or VARCHAR2 ): Variable-length character data type. It only allocates storage space for the actual length of the data
+
+8. How to select only top N rows during selection.
+ SELECT * from Students LIMIT 3;
+
+9. How to select rows which do or don't have the column values as NULL
+SELECT * from products  where price is null; // is not null
+
+10.What are wild cards?
+Used on string type. Like '_a%' // Has 'a' as second character.
+
+11. Queries on Group by and Having clause
+SELECT column_name(s)
+FROM table_name
+WHERE condition
+GROUP BY column_name(s)
+ORDER BY column_name(s);
+
+The HAVING clause was added to SQL because the WHERE keyword cannot be used with aggregate functions.
+
+SELECT column_name(s)
+FROM table_name
+WHERE condition
+GROUP BY column_name(s)
+HAVING condition
+ORDER BY column_name(s);
+
+SELECT COUNT(CustomerID), Country
+FROM Customers
+GROUP BY Country
+HAVING COUNT(CustomerID) > 5;
+
+12. What is a stored procedure?What are the advantages of using stored procedures?
+
+A stored procedure is a precompiled collection of one or more SQL statements that can be executed as a single unit.
+Code reusability, improved performance, better security, and encapsulation of business logic.
+
+13. Can a stored procedure return a value? How is it done?
+Yes, using OUT or IN OUT parameters.
+
+14. Explain the difference between a procedure and a function.
+A procedure does not return a value, whereas a function must return a value.
+
+15. What is a trigger?
+
+A trigger is a set of instructions that are automatically executed ("triggered") in response to specific events on a particular table or view.
+
+16. What types of triggers are there?
+
+In Oracle: BEFORE INSERT, AFTER INSERT, BEFORE UPDATE, AFTER UPDATE, BEFORE DELETE, AFTER DELETE.
+CREATE OR REPLACE TRIGGER trigger_name
+BEFORE INSERT ON table_name
+FOR EACH ROW
+BEGIN
+  -- Trigger body
+END trigger_name;
+
+16.What is the difference between a BEFORE and AFTER trigger?
+
+A BEFORE trigger is executed before the event (e.g., INSERT, UPDATE) occurs, allowing modification of the data before it is written.
+An AFTER trigger is executed after the event, allowing actions to be taken after the data has been modified.
+
+17. How do you disable or drop a trigger?
+-- Disable
+ALTER TRIGGER trigger_name DISABLE;
+
+-- Enable
+ALTER TRIGGER trigger_name ENABLE;
+
+-- Drop
+DROP TRIGGER trigger_name;
+
